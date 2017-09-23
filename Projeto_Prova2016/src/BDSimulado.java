@@ -1,3 +1,6 @@
+
+// Link - https://www.dropbox.com/sh/begoyy1k3znq7m1/AAAYrkkN4SSUlZWV3Bb5Vqoaa?dl=0&preview=Prova+P1+-+LTP1+-+2016.docx
+
 import java.util.ArrayList;
 
 public class BDSimulado {
@@ -98,11 +101,7 @@ public class BDSimulado {
 		double distancia = 0;
 		for (int i = 0; i < this.viagens.size(); i++) {
 			if (this.viagens.get(i).getDistancia() > distancia) {
-				distancia = (int) this.viagens.get(i).getDistancia();
-			}
-		}
-		for (int i = 0; i < this.viagens.size(); i++) {
-			if (this.viagens.get(i).getDistancia() == distancia) {
+				distancia = this.viagens.get(i).getDistancia();
 				resultado = this.viagens.get(i).getCodigo();
 			}
 		}
@@ -125,5 +124,61 @@ public class BDSimulado {
 	// Parte 3 da Prova
 	// ----------------------------------------------------------------
 
-	// recebe o nome
+	// recebe o nome do Passageiro e retorna custo de cada km rodado
+	public double getCustoKmRodado(String passageiro) {
+
+		double resultado = 0;
+		for (int i = 0; i < this.viagens.size(); i++) {
+			if (this.viagens.get(i).getPassageiro().getNome().equals(passageiro)) {
+				resultado = this.viagens.get(i).getDistancia() * this.viagens.get(i).getValor();
+			}
+		}
+		return resultado;
+	}
+
+	// retorne a lista de motoqueiros que realizaram viagens em um determinado
+	// mês e ano.
+	public ArrayList<String> getMotoqueiroPorPeriodo(int ano, int mes) {
+
+		ArrayList<String> resultado = new ArrayList<String>();
+		for (int i = 0; i < this.viagens.size(); i++) {
+			if ((this.viagens.get(i).getAno() == ano) && (this.viagens.get(i).getMes() == mes)) {
+				resultado.add(this.viagens.get(i).getMotoqueiro());
+			}
+		}
+		return resultado;
+	}
+
+	// --------------------------------------------------------------------------
+
+	// determinar a quantidade de viagens que um determinado passageiro realizou
+	// estando fora da sua UF de origem.
+	public ArrayList<String> getViagemForaUF(String passageiro) {
+
+		ArrayList<String> resultado = new ArrayList<>();
+		for (int i = 0; i < this.viagens.size(); i++) {
+			if (this.viagens.get(i).getPassageiro().getNome().equals(passageiro)
+					&& this.viagens.get(i).getPassageiro().getUF() != this.viagens.get(i).getPassageiro().getUF()) {
+				resultado.add(this.viagens.get(i).getUF());
+			}
+		}
+		return resultado;
+	}
+	// --------------------------------------------------------------------------
+
+	// determinar a quantidade de Kms percorridos por um determinado passageiro
+	// com um determinado motoqueiro.
+
+	public double getKmPassageitoMotoqueiro(String passageiro, String motoqueiro) {
+
+		double resultado = 0;
+		for (int i = 0; i < this.viagens.size(); i++) {
+			if ((this.viagens.get(i).getPassageiro().getNome().equals(passageiro))
+					&& (this.viagens.get(i).getMotoqueiro().equals(motoqueiro))) {
+
+				resultado = resultado + this.viagens.get(i).getDistancia();
+			}
+		}
+		return resultado;
+	}
 }
