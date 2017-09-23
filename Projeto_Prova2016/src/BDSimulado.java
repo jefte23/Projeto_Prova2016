@@ -169,8 +169,7 @@ public class BDSimulado {
 		return resultado;
 	}
 	// --------------------------------------------------------------------------
-	// (this.viagens.get(i).getPassageiro().getUF() !=
-	// this.viagens.get(i).getPassageiro().getUF()))
+
 	// determinar a quantidade de Kms percorridos por um determinado passageiro
 	// com um determinado motoqueiro.
 
