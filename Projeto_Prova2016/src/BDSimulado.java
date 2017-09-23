@@ -75,8 +75,10 @@ public class BDSimulado {
 
 		String resultado = "";
 		for (int i = 0; i < this.passageiros.size(); i++) {
+			System.out.println(i);
 			if (this.passageiros.get(i).getNome().equals(nome)) {
 				resultado = this.passageiros.get(i).toString();
+				return resultado;
 			}
 		}
 		return resultado;
@@ -157,15 +159,18 @@ public class BDSimulado {
 
 		ArrayList<String> resultado = new ArrayList<>();
 		for (int i = 0; i < this.viagens.size(); i++) {
-			if (this.viagens.get(i).getPassageiro().getNome().equals(passageiro)
-					&& this.viagens.get(i).getPassageiro().getUF() != this.viagens.get(i).getPassageiro().getUF()) {
+
+			if ((this.viagens.get(i).getPassageiro().getNome().equals(passageiro))
+					&& (this.passageiros.get(i).getUF() != this.viagens.get(i).getPassageiro().getUF())) {
+
 				resultado.add(this.viagens.get(i).getUF());
 			}
 		}
 		return resultado;
 	}
 	// --------------------------------------------------------------------------
-
+	// (this.viagens.get(i).getPassageiro().getUF() !=
+	// this.viagens.get(i).getPassageiro().getUF()))
 	// determinar a quantidade de Kms percorridos por um determinado passageiro
 	// com um determinado motoqueiro.
 
